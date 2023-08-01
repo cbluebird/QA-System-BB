@@ -2,11 +2,11 @@ package main
 
 import (
 	"QA-system/config/config"
+	"QA-system/config/corsConfig"
 	"QA-system/config/database"
 	"QA-system/config/router"
 	"QA-system/config/session"
 	midware "QA-system/midware"
-	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"log"
 )
@@ -14,7 +14,7 @@ import (
 func main() {
 	database.Init()
 	r := gin.Default()
-	r.Use(cors.Default())
+	r.Use(corsConfig.GetCors())
 	r.Use(midware.ErrHandler())
 	r.NoMethod(midware.HandleNotFound)
 	r.NoRoute(midware.HandleNotFound)
