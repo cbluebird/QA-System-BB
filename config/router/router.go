@@ -10,7 +10,7 @@ func Init(r *gin.Engine) {
 
 	api := r.Group(pre)
 	{
-		//		adminRouterInit(api)
+		adminRouterInit(api)
 		userRouterInit(api)
 	}
 }
