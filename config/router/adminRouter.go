@@ -2,12 +2,12 @@ package router
 
 import (
 	"QA-system/controller/adminController"
-	midwares "QA-system/midware"
+	midware "QA-system/midware"
 	"github.com/gin-gonic/gin"
 )
 
 func adminRouterInit(r *gin.RouterGroup) {
-	admin := r.Group("/admin", midwares.CheckLogin)
+	admin := r.Group("/admin", midware.CheckLogin)
 	{
 		admin.POST("/add", adminController.CreateList)
 		admin.GET("/single/get", adminController.GetAdminListByID)
@@ -16,5 +16,6 @@ func adminRouterInit(r *gin.RouterGroup) {
 		admin.GET("/list/get", adminController.GetList)
 		admin.POST("/draft/update", adminController.UpdateList)
 		admin.POST("/delete", adminController.Delete)
+		admin.GET("/download/:list_id", adminController.ExportExcel)
 	}
 }
